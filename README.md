@@ -1,0 +1,1 @@
+![alt text](https://github.com/aristotlemanolakos/ofve-bot/blob/master/graphics/log.png?raw=true "bot log")
