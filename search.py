@@ -18,17 +18,45 @@ twts = api.search(q='"could of" OR "would of" OR "should of" -filter:retweets', 
 #list of specific strings we want to check for in Tweets
 #t = ['could of']
 
+cof = 'could of'
+sof = 'should of'
+wof = 'would of'
+
 CYELLOW = '\33[33m'
 CEND = '\033[0m'
 CBOLD = '\33[1m'
+CRED = '\33[31m'
+CBLUE = '\33[34m'
+
+tempString = ''
+tempLen = 0
+tempFront = ''
+tempBack = ''
+tempInt = 0
 
 for s in twts:
-	print(CYELLOW + CBOLD + '<' + s.user.screen_name + '>:' + CEND + ' ' + s.text + '\n')
-    #print "<" + s.user.screen_name + ">: " + s.text + "\n" # Let's see what's in s.text
-    #for i in t:
-        #if i == s.text:
-            #sn = s.user.screen_name
-            #m = "@%s could *have*" % (sn)
-            #s = api.update_status(m, s.id)
+	if cof in s.text:
+		tempString = s.text
+		tempLen = len(tempString)
+		tempInt = tempString.find(cof)
+		tempFront = tempString[0:tempInt]
+		tempBack = tempString[tempInt+8:tempLen]
+		print CYELLOW + CBOLD + '<' + s.user.screen_name + '>:' + CEND + ' ' + tempFront + CRED + CBOLD + cof + CEND + tempBack
+	elif wof in s.text:
+		tempString = s.text
+		tempLen = len(tempString)
+		tempInt = tempString.find(wof)
+		tempFront = tempString[0:tempInt]
+		tempBack = tempString[tempInt+8:tempLen]
+		print CYELLOW + CBOLD + '<' + s.user.screen_name + '>:' + CEND + ' ' + tempFront + CRED + CBOLD + wof + CEND + tempBack
+	elif sof in s.text:
+		tempString = s.text
+		tempLen = len(tempString)
+		tempInt = tempString.find(sof)
+		tempFront = tempString[0:tempInt]
+		tempBack = tempString[tempInt+9:tempLen]
+		print CYELLOW + CBOLD + '<' + s.user.screen_name + '>:' + CEND + ' ' + tempFront + CRED + CBOLD + sof + CEND + tempBack
+
+		#print CYELLOW + CBOLD + '<' + s.user.screen_name + '>:' + CEND + ' ' + s.text
 
 
